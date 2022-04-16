@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,9 +41,45 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SvgPicture.asset(
-              'assets/images/mememe.svg',
-              height: 100,
+            CarouselSlider(
+              items: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text(
+                      'Local image',
+                      style: TextStyle(
+                        fontSize: 32,
+                      ),
+                    ),
+                    SvgPicture.asset(
+                      'assets/images/mememe.svg',
+                      height: 100,
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text(
+                      'Network image',
+                      style: TextStyle(
+                        fontSize: 32,
+                      ),
+                    ),
+                    SvgPicture.network(
+                      'https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/mememe.svg',
+                      height: 100,
+                    ),
+                  ],
+                ),
+              ],
+              //Slider Container properties
+              options: CarouselOptions(
+                height: 300.0,
+                autoPlay: true,
+                autoPlayInterval: const Duration(seconds: 1),
+              ),
             ),
           ],
         ),
